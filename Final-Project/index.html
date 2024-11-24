@@ -8,9 +8,36 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            text-align: center; /* Center-align text */
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
         }
         h1, h2 {
             color: #333;
+        }
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+        }
+        section {
+            max-width: 600px;
+            
+            text-align: left; /* Center section contents horizontally */
         }
         form {
             margin-bottom: 20px;
@@ -40,6 +67,13 @@
     </style>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Courses</a></li>
+        </ul>
+    </nav>
+
     <h1>Course and Teacher Management</h1>
     
     <section>
