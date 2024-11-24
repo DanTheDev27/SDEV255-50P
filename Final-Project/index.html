@@ -8,6 +8,23 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            text-align: center; /* Center-align text */
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
         }
 
         nav {
@@ -29,23 +46,6 @@
         }
         h1, h2 {
             color: #333;
-        }
-        .container {
-            display: flex;
-            justify-content: flex-start;
-            gap: 20px;
-        }
-        section {
-            max-width: 600px;
-            
-            text-align: left; /* Center section contents horizontally */
-        }
-
-        /* h1, h2 {
-            color: #333;
-        } */
-        #page-title {
-            text-align: center;
         }
         form {
             margin-bottom: 20px;
@@ -75,13 +75,7 @@
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="courses.html">Courses</a></li>
-        </ul>
-    </nav>
-    <h1 id="page-title">Course and Teacher Management</h1>
+    <h1>Course and Teacher Management</h1>
     
     <section>
         <h2>Create a Teacher</h2>
