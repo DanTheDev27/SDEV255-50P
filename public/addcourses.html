@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Courses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add New Course</h1>
+    <form id="add-course-form">
+        <label for="new-course-title">Course Title:</label>
+        <input type="text" id="new-course-title" placeholder="Enter course title" required>
+        <label for="new-course-code">Course Code:</label>
+        <input type="text" id="new-course-code" placeholder="Enter course code" required>
+        <label for="new-course-description">Description:</label>
+        <textarea id="new-course-description" placeholder="Enter course description" required></textarea>
+        <label for="new-course-credits">Credits:</label>
+        <input type="number" id="new-course-credits" placeholder="Enter number of credits" required>
+        <button type="submit">Add Course</button>
+    </form>
+
+    <br>
+    <button onclick="window.location.href='courses.html'">View Courses</button>
+
+    <script>
+        const apiBase = 'http://localhost:3000'; // Adjust this if your API is hosted elsewhere.
+
+        // Function to add a new course
+        const addCourseForm = document.getElementById('add-course-form');
+        addCourseForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const title = document.getElementById('new-course-title').value;
+            const code = document.getElementById('new-course-code').value;
+            const description = document.getElementById('new-course-description').value;
+            const credits = document.getElementById('new-course-credits').value;
+
+            try {
+                const res = await fetch(`${apiBase}/courses`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title, code, description, credits }),
+                });
+                if (!res.ok) throw new Error('Failed to add course');
+
+                addCourseForm.reset();
+                alert('Course added successfully!');
+                window.location.href = 'courses.html'; // Redirect to courses page after adding course
+            } catch (error) {
+                console.error('Error adding course:', error);
+                alert('Failed to add course. Please try again later.');
+            }
+        });
+    </script>
+</body>
+</html>
