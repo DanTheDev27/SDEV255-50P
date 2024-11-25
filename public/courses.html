@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            text-align: center; /* Center-align text */
+            text-align: center;
         }
         nav {
             background-color: #333;
@@ -29,38 +29,36 @@
         h1, h2 {
             color: #333;
         }
-        .container {
-            display: flex;
-            justify-content: flex-start;
-            gap: 20px;
+        #course-board {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        section {
-            max-width: 600px;
-            text-align: left; /* Center section contents horizontally */
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin: 10px 0 5px;
-        }
-        input, select, button {
-            padding: 10px;
-            font-size: 16px;
+        #course-table {
             width: 100%;
-            max-width: 400px;
-        }
-        .list {
+            border-collapse: collapse;
             margin-top: 20px;
         }
-        .item {
-            margin: 10px 0;
-            padding: 10px;
+        #course-table th, #course-table td {
             border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 8px;
         }
-        .item button {
+        #course-table th {
+            background-color: #333;
+            color: white;
+        }
+        #course-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        #course-table tr:hover {
+            background-color: #ddd;
+        }
+        .course-item button {
             margin-left: 10px;
         }
     </style>
@@ -68,13 +66,79 @@
 <body>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="addcourses.html">Add Courses</a></li>
             <li><a href="courses.html">Courses</a></li>
         </ul>
     </nav>
 
     <h1>Courses Page</h1>
-    
 
+    <!-- New course board section -->
+    <section id="course-board">
+        <h2>Course Board</h2>
+        <table id="course-table">
+            <thead>
+                <tr>
+                    <th>Course Title</th>
+                    <th>Course Code</th>
+                    <th>Description</th>
+                    <th>Credits</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="course-container">
+                <!-- Courses will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        const apiBase = 'http://localhost:3000'; // Adjust this if your API is hosted elsewhere.
+
+        // Function to fetch and display courses
+        async function fetchAndDisplayCourses() {
+            try {
+                const res = await fetch(`${apiBase}/courses`);
+                if (!res.ok) throw new Error('Failed to fetch courses');
+
+                const courses = await res.json();
+
+                const courseContainer = document.getElementById('course-container');
+                courseContainer.innerHTML = ''; // Clear the existing content
+
+                courses.forEach(course => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${course.title}</td>
+                        <td>${course.code}</td>
+                        <td>${course.description}</td>
+                        <td>${course.credits}</td>
+                        <td><button onclick="deleteCourse('${course.id}')">Delete</button></td>
+                    `;
+                    courseContainer.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+                alert('Failed to load courses. Please try again later.');
+            }
+        }
+
+        // Function to delete a course
+        async function deleteCourse(courseId) {
+            try {
+                const res = await fetch(`${apiBase}/courses/${courseId}`, { method: 'DELETE' });
+                if (!res.ok) throw new Error('Failed to delete course');
+
+                await fetchAndDisplayCourses();
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                alert('Failed to delete course. Please try again later.');
+            }
+        }
+
+        // Initial fetch to display courses
+        fetchAndDisplayCourses();
+    </script>
 </body>
 </html>
