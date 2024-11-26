@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+        }
+        section {
+            max-width: 600px;
+            
+            text-align: left; /* Center section contents horizontally */
+        }
+
+        /* h1, h2 {
+            color: #333;
+        } */
+        #page-title {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, button {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .list {
+            margin-top: 20px;
+        }
+        .item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .item button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>Select a Course</h2>
+        <form id="courses-form">
+            <label for="course-name">Course Name:</label>
+            <input type="text" id="teacher-name" placeholder="Enter course name" required>
+            <button type="submit">Search Courses</button>
+        </form>
+        <div class="list" id="courses-list"></div>
+    </section>
+
+    <script>
+        const apiBase = 'http://localhost:3000'; // Adjust this if your API is hosted elsewhere.
+
+        // fetch teachers and render
+        async function fetchTeachers() {
+    const res = await fetch(`${apiBase}/teachers`);
+    const teachers = await res.json();
+
+    // Populate teacher dropdown
+    teacherSelect.innerHTML = '';
+    teachers.forEach(teacher => {
+        const option = document.createElement('option');
+        option.value = teacher.id;
+        option.textContent = teacher.name;
+        teacherSelect.appendChild(option);
+    });
+
+    // Display teachers
+    teachersList.innerHTML = '<h3>Teachers:</h3>';
+    teachers.forEach(teacher => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.textContent = teacher.name;
+        teachersList.appendChild(div);
+    });
+}
+
+    // fetch courses and render
+    async function fetchCourses() {
+    const res = await fetch(`${apiBase}/courses`);
+    const courses = await res.json();
+
+    // Display courses
+    coursesList.innerHTML = '<h3>Courses:</h3>';
+    courses.forEach(course => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `
+            ${course.title} <strong>(Teacher ID: ${course.teacherId})</strong>
+            <button onclick="deleteCourse('${course.id}')">Delete</button>
+        `;
+        coursesList.appendChild(div);
+    });
+}
+
+    // create a teacher
+    teacherForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = teacherNameInput.value;
+    await fetch(`${apiBase}/teachers`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name }),
+    });
+    teacherNameInput.value = ''; // Clear input
+    await fetchTeachers(); // Refresh teacher list
+});
+
+    // create a course
+    courseForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const title = courseTitleInput.value;
+    const teacherId = teacherSelect.value;
+    await fetch(`${apiBase}/courses`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, teacherId }),
+    });
+    courseTitleInput.value = ''; // Clear input
+    await fetchCourses(); // Refresh course list
+});
+
+    // delete a course
+    async function deleteCourse(courseId) {
+    await fetch(`${apiBase}/courses/${courseId}`, { method: 'DELETE' });
+    await fetchCourses(); // Refresh course list
+}
+
+
+    </script>
+</body>
+</html>
