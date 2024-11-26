@@ -1,0 +1,7 @@
+Open a terminal in the api folder and run:
+Bash [npm install -g json-server]
+
+While still in the api folder run:
+Bash [json-server --watch db.json --port 3000]
+
+Then open local file browser and manualy run index.html
