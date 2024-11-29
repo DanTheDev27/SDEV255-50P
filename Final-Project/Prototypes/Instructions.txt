@@ -1,7 +1,21 @@
+Mach 2 & 3 only:
 Open a terminal in the api folder and run:
 Bash [npm install -g json-server]
 
 While still in the api folder run:
 Bash [json-server --watch db.json --port 3000]
 
-Then open local file browser and manualy run index.html
+Then open local file browser and manually run index.html and courses.html
+
+Mach 4 only:
+open a terminal from the api folder and run:
+Bash [npm install -g json-server]
+
+once the server installs run this command in the same terminal:
+Bash [json-server --watch db.json --static ./public]
+
+Then open local file browser and manually run index.html and courses.html
+
+Mach 5 only:
+open a terminal in the Final project mach 5 folder and run this command:
+Bash [node server.js]
