@@ -1,0 +1,8 @@
+{
+  "courses": [
+    {
+      "teacher": "john doe",
+      "course": "sdev 100"
+    }
+  ]
+}

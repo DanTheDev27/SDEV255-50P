@@ -1,0 +1,30 @@
+{
+  "teachers": [
+    {
+      "id": "0a06",
+      "name": "smith"
+    },
+    {
+      "id": "cd99",
+      "name": "smith"
+    },
+    {
+      "id": "0dca",
+      "name": "john doe"
+    }
+  ],
+  "courses": [
+    {
+      "id": "7d7a",
+      "title": "SDEV550"
+    },
+    {
+      "id": "4ef5",
+      "title": "SDEV550"
+    },
+    {
+      "id": "aa7d",
+      "title": "Web Development"
+    }
+  ]
+}

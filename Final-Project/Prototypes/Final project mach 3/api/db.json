@@ -1,0 +1,15 @@
+{
+  "teachers": [],
+  "courses": [
+    {
+      "id": "fbe8",
+      "title": "SDEV550",
+      "teacherId": "1"
+    },
+    {
+      "id": "b760",
+      "title": "ENGL220",
+      "teacherId": "1"
+    }
+  ]
+}

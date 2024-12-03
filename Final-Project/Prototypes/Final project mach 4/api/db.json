@@ -1,0 +1,14 @@
+{
+  "courses": [
+    {
+      "id": "dfd6",
+      "teacher": "johnson",
+      "course": "sdev 250"
+    },
+    {
+      "id": "1df6",
+      "teacher": "myeres",
+      "course": "219"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Course</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Update Course</h1>
+    <form action="/courses/update" method="POST">
+        <input type="hidden" name="id" value="<%= id %>">
+        
+        <label for="teacher">Teacher:</label>
+        <input type="text" name="teacher" id="teacher" value="<%= course.teacher %>" required>
+        
+        <label for="course">Course:</label>
+        <input type="text" name="course" id="course" value="<%= course.course %>" required>
+        
+        <button type="submit">Update Course</button>
+    </form>
+    <a href="/courses">Back to Courses</a>
+</body>
+</html>

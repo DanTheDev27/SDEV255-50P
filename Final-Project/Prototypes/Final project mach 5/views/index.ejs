@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Courses</title>
+    <link rel="stylesheet" href="/styles.css">
+    
+    <a href="/courses">Courses</a>    
+</head>
+<body>
+    <h1>Create a Course</h1>
+    <form action="/courses" method="POST">
+        <label for="teacher">Teacher:</label>
+        <input type="text" name="teacher" id="teacher" required>
+        <label for="course">Course:</label>
+        <input type="text" name="course" id="course" required>
+        <button type="submit">Add Course</button>
+    </form>
+    <h2>Existing Courses</h2>
+    <ul>
+        <% courses.forEach((c) => { %>
+            <li><%= c.teacher %>: <%= c.course %></li>
+        <% }); %>
+    </ul>
+</body>
+</html>

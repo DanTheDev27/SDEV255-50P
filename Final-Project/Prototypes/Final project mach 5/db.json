@@ -1,0 +1,24 @@
+{
+  "courses": [
+    {
+      "teacher": "john doe",
+      "course": "sdev 100"
+    },
+    {
+      "teacher": "jim bob",
+      "course": "sdev 100"
+    },
+    {
+      "teacher": "jimmy bobby",
+      "course": "sdev 101"
+    },
+    {
+      "teacher": "jane doe",
+      "course": "sdev 111"
+    },
+    {
+      "teacher": "slim jim",
+      "course": "web dev 100"
+    }
+  ]
+}

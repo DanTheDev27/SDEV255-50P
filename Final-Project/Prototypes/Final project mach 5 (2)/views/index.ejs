@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 400px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create a New Course</h1>
+
+    <!-- Form for creating a new course -->
+    <form action="/courses" method="POST">
+        <label for="teacher">Teacher:</label>
+        <input type="text" id="teacher" name="teacher" placeholder="Enter teacher name" required>
+
+        <label for="course">Course:</label>
+        <input type="text" id="course" name="course" placeholder="Enter course title" required>
+
+        <button type="submit">Add Course</button>
+    </form>
+
+    <!-- Link to manage courses -->
+    <a href="/courses">Go to Courses</a>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course and Teacher Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body id="index-page">
+    <h1>Course and Teacher Management</h1>
+
+    <section>
+        <h2>Create a Teacher</h2>
+        <form id="create-teacher-form">
+            <label for="teacher-select">Select Teacher:</label>
+            <select id="teacher-select" required>
+                <!-- Default teachers will be populated via JavaScript -->
+            </select>
+            <button type="submit">Add Teacher</button>
+        </form>
+        <div class="list" id="teachers-list"></div>
+    </section>
+
+    <section>
+        <h2>Create a Course</h2>
+        <form id="create-course-form">
+            <label for="course-title">Course Title:</label>
+            <input type="text" id="course-title" placeholder="Enter course title" required>
+            <label for="teacher-dropdown">Select Teacher:</label>
+            <select id="teacher-dropdown" required>
+                <!-- Teachers will be populated here via JavaScript -->
+            </select>
+            <button type="submit">Add Course</button>
+        </form>
+        <div class="list" id="courses-list"></div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+</html>
